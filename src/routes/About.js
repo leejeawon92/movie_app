@@ -1,8 +1,14 @@
 import React from 'react';
+import "./About.css";
 
 function About() {
-    return <span>About</span>
-    
+    return (
+        <div className='about__container'>
+            <span>About~~~~~~~</span>
+            <span>About~~~~~~~</span>
+            
+        </div>
+    )
 }
 
 export default About;
