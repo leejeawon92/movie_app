@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const root = document.getElementById("root")
+
+        function App(){
+            const [time, setTime]= React.useState();
+            const [flipped, setFlipped ]= React.useState(false);
+
+            const onChange = (event) => {
+                setTime(event.target.value);
+            }
+            const reset = () => {
+                setTime(0);
+            }
+
+            const onFlip= () => {
+                reset();
+                setFlipped((current)=> !current);
+            }
+            return (
+                <div>
+                    <h1>Converter</h1>
+
+                    <div>
+                        <label htmlFor="minutes">Minutes</label>
+                        <input 
+                            value={flipped ? time*60 : time } 
+                            onChange={onChange} 
+                            id="minutes" 
+                            placeholder="Minutes" type="number"
+                            disabled={flipped}
+                        />  
+                    </div>
+
+                    <div>
+                        <label htmlFor="hours">Hours</label>
+                        <input 
+                            value={flipped ? time : time/60} 
+                            onChange={onChange} 
+                            id="hours" 
+                            placeholder="Hours" 
+                            type="number"
+                            disabled={!flipped}
+                        />  
+                    </div>
+
+                    <button onClick={reset}>Reset</button>
+                    <button onClick={onFlip}>{flipped ? "minute->hour" :"hour->minute"}</button>
+                </div>
+            )
+        }
+        ReactDOM.render( <App />, root );
+    </script>
+</body>
+</html>
