@@ -15,8 +15,7 @@
 
     <script type="text/babel">
         const root = document.getElementById("root")
-
-        function App(){
+        function TimeConverter(){
             const [time, setTime]= React.useState();
             const [flipped, setFlipped ]= React.useState(false);
 
@@ -33,8 +32,6 @@
             }
             return (
                 <div>
-                    <h1>Converter</h1>
-
                     <div>
                         <label htmlFor="minutes">Minutes</label>
                         <input 
@@ -60,6 +57,39 @@
 
                     <button onClick={reset}>Reset</button>
                     <button onClick={onFlip}>{flipped ? "minute->hour" :"hour->minute"}</button>
+                </div>
+            )
+        }
+        
+        function DistanceConverter(){
+            return (
+                <div></div>
+            )
+        }
+        
+        function aaa(index) {
+            switch (index) {
+                case '0' : return <TimeConverter />
+                case '1' : return <DistanceConverter />
+                
+            }
+        }
+
+        function App(){
+            const [index, setIndex] = React.useState("0");
+            const onSelect = (event) => {
+                setIndex(event.target.value);
+            }
+            return (
+                <div>
+                    <h1>Converter Choise</h1>
+                    <select value={index} onChange={onSelect}>
+                        <option value="0">시간변환기</option>
+                        <option value="1">거리변환기</option>
+                    </select>
+                    <hr/>
+                    {index === "0" ? <TimeConverter /> : null}
+                    {index === "1" ? <DistanceConverter /> : null}
                 </div>
             )
         }
