@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const root = document.getElementById("root")
+
+        function App(){
+            const [counter , setCounter] = React.useState(0);
+            const [search, setSearch] = React.useState("")
+
+            const onChange = (event) => {
+                setSearch(event.target.value)
+            }
+
+            const onClicked = () => {
+                setCounter((current) => {
+                    return current+1
+                })
+            }
+
+            React.useEffect(()=>{
+                console.log('버튼클릭할때만 실행');
+            }, [counter])
+            
+
+            React.useEffect(()=>{
+                console.log('딱 한번만 실행된다.');
+            }, []);
+
+            React.useEffect(()=>{
+                console.log('검색할때만 실행');
+            }, [search])
+
+
+            
+            return (
+                <div>
+                    <input value={search} onChange={onChange} placeholder='검색할단어를입력하세요'></input>
+                    <h3>Total Clicks :{counter}</h3>    
+                    <button onClick={onClicked}>Click me</button>
+                </div>
+            )
+        }
+        ReactDOM.render( <App />, root );
+    </script>
+</body>
+</html>
