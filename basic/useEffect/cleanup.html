@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const root = document.getElementById("root")
+
+        function Hello() {
+            React.useEffect(() => {
+                console.log('Hello 컴포넌트 처음 실행!');
+                return () => console.log('Hello 컴포넌트 삭제!');
+            }, [])
+            return <h1>Hello</h1>
+        }
+
+        function App(){
+            const [showing, setShowing] = React.useState(false);
+            const onClick = () => setShowing((prev) => !prev);
+            
+            return (
+                <div>
+                    {showing ? <Hello /> : null}
+                    <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+                </div>
+            )
+        }
+        ReactDOM.render( <App />, root );
+    </script>
+</body>
+</html>
