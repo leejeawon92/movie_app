@@ -162,8 +162,8 @@ function Detail() {
 // useParams Hook을 사용하여 동적URL의 변수를 받아올 수 있다.
 ```
 
-
-* Step4- Style추가 및 Publishing
+</br>
+</br>
 
 
 
